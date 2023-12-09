@@ -18,8 +18,27 @@
 <body>
     <section class="todo-container">
         <h2>To Do List</h2>
+        <section class="todo">
+            <form action="/" method="POST" class="todo-header">
+                <input type="text" name="title" value="title">
+                <textarea name="content" id="" cols="45" rows="6">content</textarea>
+                <button type="submit"><span class="fas fa-plus">Add To List</span></button>
+            </form>
+            <ul class="todo-list">
+                <% toDoTasks.forEach(details => { %>
+                <li class="todo-list-item">
+                    <div class="todo-list-item-title">
+                        <%= details.title %>
+                    </div>
+                    <div class="todo-list-item-title">
+                        <%= details.content %>
+                    </div>
+                    <a href="/edit/<%=details._id %>" class="edit"><span class="fas fa-edit"></span><span class="fas fa-delete"></span></a>
+                </li>
+               <% }) %>
+            </ul>
+        </section>
     </section>
-    <div><h1>WHY ARENT YOU WORKING!!!!!?????</h1></div>
-
+    
 </body>
 </html>
