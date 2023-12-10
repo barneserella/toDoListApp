@@ -32,21 +32,6 @@ app.get("/", async (req, res) => {
     }
 });
      
-        // res.render('index.ejs')
-       
-        // .then(function(tasks){
-        //     console.log(tasks);
-        // })
-        // .catch(function (err){
-        //     console.log(err);
-        // })
-    //     toDoTasks.find({}, (err, tasks) => {
-    //         res.render("index.ejs", {toDoTasks: tasks});
-    //     });
-    // } catch (error){
-    //     console.error(error)
-    // }
-
 
 // POST METHOD
 app.post('/', async (req, res) => {
@@ -66,39 +51,6 @@ app.post('/', async (req, res) => {
     }
 });
 
-//     .then(() => {
-//         console.log(doc)
-//     })
-//     .then(() => {
-//         res.redirect('/')
-//     })
-//     .catch((err) => {
-//         console.log(err)
-//     });
-// });
-    // try {
-    //     await todoTasks.save()
-    //     console.log(todoTasks)
-    //     res.redirect('/')
-    // } catch(err) {
-    //     if (err) return res.status(500).send(err)
-    // }
-// });
-
-
-    // This doesnt work below
-//     res.render('index.ejs')
-// });
-    // try{
-    //     toDoTasks.find({}, (err, tasks) => {
-    //         res.render("index.ejs", {toDoTasks: tasks});
-    //     });
-    // } catch (err){
-    //     if(err) return res.status(500).send(err);
-    // }
-
-// {toDoTasks: tasks}
-
 // UPDATE METHOD
 app.route('/edit/:id')
     .get(async (req, res) => {
@@ -111,18 +63,7 @@ app.route('/edit/:id')
             res.status(500).send({message: error.message})
         }
     })
-    // .get((req, res) => {
-    //     try{
-    //         const id = req.params.id
-    //         const toDoTasks = Task.find({})
-    //         res.render('edit.ejs', {
-    //         toDoTasks:tasks, idTask: id })
-    //     }catch (error) {
-           
-    //         console.error(error);
-    //         res.status(500).send({message: error.message})
-    //     }
-    // })
+    
     .post(async (req, res) => {
         const id = req.params.id;
         try{
