@@ -30,7 +30,7 @@ app.get("/", async (req, res) => {
         console.error(error);
         res.status(500).send({message: error.message})
     }
-    
+});
      
         // res.render('index.ejs')
        
@@ -46,7 +46,7 @@ app.get("/", async (req, res) => {
     // } catch (error){
     //     console.error(error)
     // }
-});
+
 
 // POST METHOD
 app.post('/', async (req, res) => {
@@ -98,4 +98,76 @@ app.post('/', async (req, res) => {
     // }
 
 // {toDoTasks: tasks}
+
+// UPDATE METHOD
+app.route('/edit/:id')
+    .get(async (req, res) => {
+        try{
+            const id = req.params.id
+            const tasks = await Task.find({});
+            res.render("edit.ejs", { toDoTasks: tasks, idTask: id });
+            } catch (error) {
+            console.error(error);
+            res.status(500).send({message: error.message})
+        }
+    })
+    // .get((req, res) => {
+    //     try{
+    //         const id = req.params.id
+    //         const toDoTasks = Task.find({})
+    //         res.render('edit.ejs', {
+    //         toDoTasks:tasks, idTask: id })
+    //     }catch (error) {
+           
+    //         console.error(error);
+    //         res.status(500).send({message: error.message})
+    //     }
+    // })
+    .post(async (req, res) => {
+        const id = req.params.id;
+        try{
+            const updatedTask = await Task.findByIdAndUpdate(
+            id, 
+            {
+                title: req.body.title,
+                content: req.body.content
+            },
+            { new:true }
+        );
+
+        if (!updatedTask) {
+            console.log("Task not found");
+            return res.redirect('/');
+        }   
+            console.log("Task updated:", updatedTask);
+            res.redirect('/');
+        }
+        catch(err) {
+                console.log(err);
+                res.status(500).send({ message: err.message });
+            }
+    });
+
+// DELETE METHOD
+app.route('/remove/:id')
+    .get(async (req, res) => {
+        try{
+            const id = req.params.id
+            const deletedTask = await Task.findByIdAndDelete(id);
+
+            if (!deletedTask) {
+                console.log("Task not found");
+                return res.redirect('/');
+            }   
+                console.log("Task deleted:", deletedTask);
+                res.redirect('/');
+            
+        }catch(error){
+            console.error(error);
+            res.status(500).send({message: error.message})
+        }
+    });
+    
+
+
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
