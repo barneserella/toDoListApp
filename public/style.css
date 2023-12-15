@@ -35,15 +35,17 @@ h2 {
 
 input {
     font-family: "Edu TAS Beginner", sans-serif;
+    font-size: 1.5rem;
     margin-bottom: 2px;
     padding: 5px;
     border-radius: 5px;
-    height: 20px;
+    height: 30px;
     width: 100%;
 }
 
 textarea {
     font-family: "Edu TAS Beginner", sans-serif;
+    font-size: 1.5rem;
     display: block;
     width: 100%;
     border-radius: 5px;
@@ -62,7 +64,7 @@ textarea {
  ul {
     list-style: none;
  }
-
+ 
  .todo-list-item {
     padding: 10px;
     margin-top: 10px;
